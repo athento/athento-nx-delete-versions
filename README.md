@@ -25,6 +25,7 @@ params: name:limit type:string - Limit the number of results that would be delet
 These operations are intended to be used via API. Some external script, using these operations to clean from old versions the repository
 
 Examples:
+
 1 - Search the first 5 version documents but don't delete them
 POST http://localhost:8080/nuxeo/site/automation/RemoveOldVersions_noDelete
 body: {"input":"","context":{} , "params" : { "limit" : "5" }}
