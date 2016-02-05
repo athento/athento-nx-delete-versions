@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="org.athento.nuxeo.athento-nx-delete-versions.chains" version="1.0.0">
+	<require>org.nuxeo.runtime.started</require>
+
+	<extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
+		point="chains">
+
+		<chain id="RemoveOldVersions">
+			<param type="string" name="limit" />
+			<operation id="Document.Query">
+				<param type="string" name="query">SELECT * FROM Document WHERE 
+				ecm:currentLifeCycleState != 'deleted' AND 
+				ecm:isCheckedInVersion = 1 AND 
+				ecm:mixinType != 'HiddenInNavigation'</param>
+				<param type="string" name="language">NXQL</param>
+				<param type="string" name="sortOrder">ASC</param>
+				<param type="string" name="pageSize">expr:@{ChainParameters['limit']}</param>
+			</operation>
+			<operation id="Document.Delete"/>
+		</chain>
+		<chain id="RemoveOldVersions_noDelete">
+			<param type="string" name="limit" />
+			<operation id="Document.Query">
+				<param type="string" name="query">SELECT * FROM Document WHERE 
+				ecm:currentLifeCycleState != 'deleted' AND 
+				ecm:isCheckedInVersion = 1 AND 
+				ecm:mixinType != 'HiddenInNavigation'</param>
+				<param type="string" name="language">NXQL</param>
+				<param type="string" name="sortOrder">ASC</param>
+				<param type="string" name="pageSize">expr:@{ChainParameters['limit']}</param>
+			</operation>
+		</chain>
+
+	</extension>
+
+</component>
