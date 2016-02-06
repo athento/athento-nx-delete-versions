@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>athento-nx-delete-versions</groupId>
 	<artifactId>athento-nx-delete-versions</artifactId>
-	<version>1.0</version>
+	<version>1.1</version>
 	<name>Athento NX Delete Versions</name>
 	<description>Athento NX Delete Versions</description>
 	<dependencyManagement>
