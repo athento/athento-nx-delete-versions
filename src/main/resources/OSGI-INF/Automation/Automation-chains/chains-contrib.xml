@@ -15,14 +15,42 @@
 					ecm:isVersion = 1 AND
 					ecm:mixinType != 'HiddenInNavigation'
 					AND
-					ecm:mixinType != 'Folderish'
+					ecm:mixinType !=
+					'Folderish' AND
+					ecm:currentLifeCycleState != 'approved'
 				</param>
 				<param type="string" name="language">NXQL</param>
 				<param type="string" name="sortOrder">ASC</param>
 				<param type="string" name="pageSize">expr:@{ChainParameters['limit']}
 				</param>
 			</operation>
+			<operation id="Context.SetInputAsVar">
+				<param type="string" name="name">results</param>
+			</operation>
 			<operation id="Document.Delete" />
+			<operation id="Context.RestoreDocumentsInput">
+				<param type="string" name="name">results</param>
+			</operation>
+		</chain>
+		<chain id="RemoveOldVersions_CheckOutDocuments">
+			<param type="string" name="limit" />
+			<operation id="Document.Query">
+				<param type="string" name="query">SELECT * FROM Document WHERE
+					ecm:currentLifeCycleState != 'deleted' AND
+					ecm:isVersion = 0 AND
+					ecm:mixinType != 'HiddenInNavigation'
+					AND
+					ecm:mixinType !=
+					'Folderish' AND
+					ecm:currentLifeCycleState != 'approved' AND
+					ecm:isCheckedIn = 1
+				</param>
+				<param type="string" name="language">NXQL</param>
+				<param type="string" name="sortOrder">ASC</param>
+				<param type="string" name="pageSize">expr:@{ChainParameters['limit']}
+				</param>
+			</operation>
+			<operation id="Document.CheckOut" />
 		</chain>
 		<chain id="RemoveOldVersions_noDelete">
 			<param type="string" name="limit" />
@@ -32,7 +60,9 @@
 					ecm:isVersion = 1 AND
 					ecm:mixinType != 'HiddenInNavigation'
 					AND
-					ecm:mixinType != 'Folderish'
+					ecm:mixinType !=
+					'Folderish' AND
+					ecm:currentLifeCycleState != 'approved'
 				</param>
 				<param type="string" name="language">NXQL</param>
 				<param type="string" name="sortOrder">ASC</param>
