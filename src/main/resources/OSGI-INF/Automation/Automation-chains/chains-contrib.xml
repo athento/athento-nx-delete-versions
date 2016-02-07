@@ -24,13 +24,7 @@
 				<param type="string" name="pageSize">expr:@{ChainParameters['limit']}
 				</param>
 			</operation>
-			<operation id="Context.SetInputAsVar">
-				<param type="string" name="name">results</param>
-			</operation>
 			<operation id="Document.Delete" />
-			<operation id="Context.RestoreDocumentsInput">
-				<param type="string" name="name">results</param>
-			</operation>
 		</chain>
 		<chain id="RemoveOldVersions_CheckOutDocuments">
 			<param type="string" name="limit" />
