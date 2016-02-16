@@ -19,6 +19,21 @@
 		</dependencies>
 
 	</dependencyManagement>
+	<distributionManagement>
+		<repository>
+			<id>athento-public</id>
+			<name>Athento Public</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public</url>
+			<layout>default</layout>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>athento-public-snapshot</id>
+			<name>Athento Public Snapshot</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public-snapshot</url>
+			<layout>default</layout>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<dependencies>
 
